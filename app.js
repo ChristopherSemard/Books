@@ -26,8 +26,16 @@ function filterBooks(type, selected) {
     let books = document.querySelector(".books-list").children;
     for (const book of books) {
         book.style.display = "none";
-        for (const author of book.date) {
-            if (author == selected) {
+        let values;
+        if (type == "author") {
+            selectCategories.selectedIndex = 0;
+            values = book.dataset.authors.split(",");
+        } else if (type == "category") {
+            selectAuthors.selectedIndex = 0;
+            values = book.dataset.categories.split(",");
+        }
+        for (const value of values) {
+            if (value == selected) {
                 book.style.display = "block";
             }
         }
